@@ -822,6 +822,13 @@
     // Public: host's "Import from computer" calls this to run local browse.
     openFilePicker() { this._exitReframe(true); this._input.click(); }
 
+    // Public: the image actually on screen right now — a dropped photo
+    // (_userUrl) if present, else the author-set src attribute. Callers
+    // that need "what this slot is showing" (e.g. a lightbox) must use
+    // this instead of reading the src attribute directly, since a drop
+    // overrides it without changing the attribute itself.
+    currentSrc() { return this._userUrl || this.getAttribute('src') || ''; }
+
     attributeChangedCallback() { if (this.shadowRoot) this._render(); }
 
     // handleEvent — one listener object for all four drag events keeps the

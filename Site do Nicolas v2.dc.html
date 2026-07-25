@@ -45,6 +45,9 @@
     .popup-card { max-width:92vw !important; }
   }
 
+  .photo-click { cursor:pointer; position:relative; }
+  .expand-badge { position:absolute; bottom:6px; right:6px; width:26px; height:26px; border-radius:50%; background:rgba(25,21,18,0.75); color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px; pointer-events:none; z-index:3; }
+
   @media (max-width: 420px) {
     .mh-title { font-size:23px !important; }
     .gal-grid, .patro-grid { grid-template-columns:repeat(2,1fr) !important; gap:8px !important; }
@@ -103,7 +106,7 @@
           <div class="home-grid" style="display:grid; grid-template-columns:2fr 1fr; gap:18px;">
             <div>
               <div style="border:3px solid #191512; background:#fff;">
-                <div style="width:100%; aspect-ratio:4/3;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="home-1" shape="rect" placeholder="foto icônica do Nicolas" src="uploads/WhatsApp Image 2026-07-13 at 18.36.31/WhatsApp Image 2026-07-13 at 18.36.35.jpeg" hint-size="100%,100%"></x-import></div>
+                <div class="photo-click" onClick="{{ openHome1 }}" style="width:100%; aspect-ratio:4/3;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="home-1" shape="rect" placeholder="foto icônica do Nicolas" src="uploads/WhatsApp Image 2026-07-13 at 18.36.31/WhatsApp Image 2026-07-13 at 18.36.35.jpeg" hint-size="100%,100%"></x-import><div class="expand-badge">⤢</div></div>
               </div>
               <div style="font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.3px; font-size:16px; color:#3a352c; padding:6px 2px; line-height:1.3;">Flagrado no Cristo Redentor checando o ranked em vez de aproveitar a vista.</div>
               <div style="font-family:'Libre Baskerville',serif; font-size:13.5px; line-height:1.65; color:#2a251e; column-count:2; column-gap:18px; margin-top:6px;">
@@ -118,13 +121,13 @@
                 <div style="font-family:'Oswald',sans-serif; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#8f8674;">leitores fofoqueiros</div>
               </div>
               <div style="border:3px solid #191512; background:#fff; margin-top:14px;">
-                <div style="width:100%; aspect-ratio:1/1;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="home-2" shape="rect" placeholder="print de negociação suspeita" src="uploads/WhatsApp Image 2026-07-13 at 18.36.31/WhatsApp Image 2026-07-13 at 18.21.56.jpeg" hint-size="100%,100%"></x-import></div>
+                <div class="photo-click" onClick="{{ openHome2 }}" style="width:100%; aspect-ratio:1/1;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="home-2" shape="rect" placeholder="print de negociação suspeita" src="uploads/WhatsApp Image 2026-07-13 at 18.36.31/WhatsApp Image 2026-07-13 at 18.21.56.jpeg" hint-size="100%,100%"></x-import><div class="expand-badge">⤢</div></div>
               </div>
-              <div style="font-family:'Caveat',cursive; font-size:18px; color:#3a352c; padding:4px 2px;">"Aos cuidados do Hook Man"</div>
+              <div style="font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.3px; font-size:16px; color:#3a352c; padding:4px 2px; line-height:1.3;">"Aos cuidados do Hook Man"</div>
               <div style="border:3px solid #191512; background:#fff; margin-top:10px;">
-                <div style="width:100%; aspect-ratio:1/1;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="home-3" shape="rect" placeholder="foto vendendo monjaro" src="uploads/WhatsApp Image 2026-07-13 at 18.36.31/WhatsApp Image 2026-07-13 at 18.36.29.jpeg" hint-size="100%,100%"></x-import></div>
+                <div class="photo-click" onClick="{{ openHome3 }}" style="width:100%; aspect-ratio:1/1;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="home-3" shape="rect" placeholder="foto vendendo monjaro" src="uploads/WhatsApp Image 2026-07-13 at 18.36.31/WhatsApp Image 2026-07-13 at 18.36.29.jpeg" hint-size="100%,100%"></x-import><div class="expand-badge">⤢</div></div>
               </div>
-              <div style="font-family:'Caveat',cursive; font-size:18px; color:#3a352c; padding:4px 2px;">The Rio de Janeiro and BombMan</div>
+              <div style="font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.3px; font-size:16px; color:#3a352c; padding:4px 2px; line-height:1.3;">The Rio de Janeiro and BombMan</div>
             </div>
           </div>
         </div>
@@ -162,8 +165,8 @@
           <div class="gal-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
             <sc-for list="{{ galeriaSlots }}" as="slot" hint-placeholder-count="15">
               <div style="background:#fff; padding:8px 8px 0; box-shadow:0 4px 12px rgba(0,0,0,0.18); border:1px solid #d8ccae;">
-                <div style="width:100%; aspect-ratio:1/1; background:#eee;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ slot.id }}" shape="rect" placeholder="{{ slot.label }}" src="{{ slot.src }}" hint-size="100%,100%"></x-import></div>
-                <div style="font-family:'Caveat',cursive; font-size:17px; line-height:1.05; color:#3a352c; padding:6px 2px 10px; min-height:52px;">{{ slot.label }}</div>
+                <div class="photo-click" onClick="{{ slot.open }}" style="width:100%; aspect-ratio:1/1; background:#eee;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ slot.id }}" shape="rect" placeholder="{{ slot.label }}" src="{{ slot.src }}" hint-size="100%,100%"></x-import><div class="expand-badge">⤢</div></div>
+                <div style="font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.3px; font-size:16px; line-height:1.3; color:#3a352c; padding:6px 2px 10px; min-height:52px;">{{ slot.label }}</div>
               </div>
             </sc-for>
           </div>
@@ -215,8 +218,8 @@
           <div class="patro-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
             <sc-for list="{{ patrocinadoresSlots }}" as="slot" hint-placeholder-count="9">
               <div style="background:#fff; padding:8px 8px 0; box-shadow:0 4px 12px rgba(0,0,0,0.18); border:1px solid #d8ccae;">
-                <div style="width:100%; aspect-ratio:1/1; background:#eee;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ slot.id }}" shape="rect" placeholder="{{ slot.label }}" src="{{ slot.src }}" hint-size="100%,100%"></x-import></div>
-                <div style="font-family:'Caveat',cursive; font-size:17px; line-height:1.05; color:#3a352c; padding:6px 2px 10px; min-height:26px;">{{ slot.label }}</div>
+                <div class="photo-click" onClick="{{ slot.open }}" style="width:100%; aspect-ratio:1/1; background:#eee;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ slot.id }}" shape="rect" placeholder="{{ slot.label }}" src="{{ slot.src }}" hint-size="100%,100%"></x-import><div class="expand-badge">⤢</div></div>
+                <div style="font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.3px; font-size:16px; line-height:1.3; color:#3a352c; padding:6px 2px 10px; min-height:26px;">{{ slot.label }}</div>
               </div>
             </sc-for>
           </div>
@@ -271,6 +274,14 @@
     </div>
   </sc-if>
 
+  <!-- photo lightbox -->
+  <sc-if value="{{ lightboxSrc }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeLightbox }}" style="position:fixed; inset:0; background:rgba(10,8,6,0.92); display:flex; align-items:center; justify-content:center; z-index:200; padding:24px; cursor:zoom-out;">
+      <img src="{{ lightboxSrc }}" style="max-width:100%; max-height:100%; object-fit:contain; box-shadow:0 20px 60px rgba(0,0,0,0.6); border:4px solid #f2ead7;">
+      <button onClick="{{ closeLightbox }}" style="position:fixed; top:16px; right:16px; width:44px; height:44px; border-radius:50%; background:#191512; color:#fff; border:2px solid #fff; font-size:20px; cursor:pointer; z-index:210;">✕</button>
+    </div>
+  </sc-if>
+
 </div>
 
 </x-dc>
@@ -282,6 +293,7 @@ class Component extends DCLogic {
     runawayTop: 130,
     runawayLeft: 40,
     showPopup: false,
+    lightboxSrc: null,
   };
 
   componentDidMount() {
@@ -301,6 +313,14 @@ class Component extends DCLogic {
   }
 
   goTo(page) { this.setState({ page }); }
+
+  openLightbox(src) { this.setState({ lightboxSrc: src }); }
+  openLightboxById(id, fallbackSrc) {
+    const el = document.getElementById(id);
+    const src = (el && typeof el.currentSrc === 'function' && el.currentSrc()) || fallbackSrc;
+    this.openLightbox(src);
+  }
+  closeLightbox() { this.setState({ lightboxSrc: null }); }
 
   renderVals() {
     const pages = [
@@ -366,7 +386,7 @@ class Component extends DCLogic {
       { id: 'gal-13', label: 'CristoCraft', src: UP + 'WhatsApp Image 2026-07-13 at 18.36.35.jpeg' },
       { id: 'gal-14', label: 'Furia perdendo pra Falcons :D', src: UP + 'WhatsApp Image 2026-07-13 at 18.36.36.jpeg' },
       { id: 'gal-15', label: 'Bolsonaro e o peixe', src: UP + 'WhatsApp Image 2026-07-13 at 18.59.06.jpeg' },
-    ];
+    ].map(s => ({ ...s, open: () => this.openLightboxById(s.id, s.src) }));
 
     const PAT = 'uploads/patrocinadores/';
     const patrocinadoresSlots = [
@@ -379,7 +399,7 @@ class Component extends DCLogic {
       { id: 'patro-7', label: 'PT', src: PAT + 'pt.webp' },
       { id: 'patro-8', label: 'Vasco', src: PAT + 'Vasco.webp' },
       { id: 'patro-9', label: 'Vorcaro', src: PAT + 'Vorcaro.webp' },
-    ];
+    ].map(s => ({ ...s, open: () => this.openLightboxById(s.id, s.src) }));
 
     const dossie = [
       { k: 'Nome de guerra', v: 'Nicolas "O Original"' },
@@ -421,6 +441,11 @@ class Component extends DCLogic {
       },
       showPopup: this.state.showPopup,
       closePopup: () => this.setState({ showPopup: false }),
+      openHome1: () => this.openLightboxById('home-1', UP + 'WhatsApp Image 2026-07-13 at 18.36.35.jpeg'),
+      openHome2: () => this.openLightboxById('home-2', UP + 'WhatsApp Image 2026-07-13 at 18.21.56.jpeg'),
+      openHome3: () => this.openLightboxById('home-3', UP + 'WhatsApp Image 2026-07-13 at 18.36.29.jpeg'),
+      lightboxSrc: this.state.lightboxSrc,
+      closeLightbox: () => this.closeLightbox(),
     };
   }
 }
