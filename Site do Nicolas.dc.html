@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  @keyframes blinker { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+  @keyframes rainbowbg { 0%{background-position:0 0} 100%{background-position:400px 0} }
+  @keyframes marquee { 0%{transform:translateX(100%)} 100%{transform:translateX(-100%)} }
+  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+  @keyframes eq { 0%{height:4px} 50%{height:18px} 100%{height:4px} }
+  @keyframes spin360 { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  body { margin:0; cursor:crosshair; background:#000; }
+  ::selection { background:#39FF14; color:#000; }
+  a { color:#00eaff; }
+  a:hover { color:#ff00ff; }
+</style>
+</helmet>
+
+<div style="min-height:100vh; background-color:#1a0033; background-image:repeating-linear-gradient(45deg,#39FF14 0 20px,#ff00ff 20px 40px,#00eaff 40px 60px,#1a0033 60px 80px); background-size:400px 80px; animation:rainbowbg 6s linear infinite; font-family:'Comic Sans MS','Comic Sans',cursive; padding:14px;">
+
+  <!-- outer table frame -->
+  <div style="max-width: 820px; margin: 0 auto; background: #000; border: 6px ridge #c0c0c0; padding: 0; width: 851px; height: 776px">
+
+    <!-- top under construction banner -->
+    <div style="background:repeating-linear-gradient(45deg,#ffe600 0 18px,#111 18px 36px); padding:6px 0; text-align:center;">
+      <span style="font-family:Impact,'Arial Black',sans-serif; font-size:22px; color:#ff0000; -webkit-text-stroke:1px #000; animation:blinker 1s step-start infinite; letter-spacing:1px;">🚧 SITE EM CONSTRUÇÃO DESDE 2007 🚧</span>
+    </div>
+
+    <!-- header -->
+    <div style="background:#000; padding:16px 10px 6px; text-align:center; border-bottom:4px double #39FF14;">
+      <div style="font-family:Impact,'Arial Black',sans-serif; font-size:48px; color:#39FF14; text-shadow:3px 3px 0 #ff00ff, -2px -2px 0 #00eaff; line-height:1;">
+        ⚔️ SITE OFICIAL DO NICOLAS ⚔️
+      </div>
+      <div style="color:#ffe600; font-size:16px; margin-top:6px; font-weight:bold;">
+        ★彡 O verdadeiro Diamante Ferro IV do League of Legends 彡★
+      </div>
+      <div style="overflow:hidden; white-space:nowrap; background:#111; border:2px inset #666; margin-top:10px; padding:6px 0;">
+        <span style="display:inline-block; animation:marquee 12s linear infinite; color:#ff00ff; font-weight:bold; font-size:15px;">
+          🏆 21 ANOS DE PURO FEEDING 🏆 &nbsp;&nbsp;&nbsp; VENDE MONJARO DO PARAGUAI 100% ORIGINAL* &nbsp;&nbsp;&nbsp; PAQUERANDO A LOIRINHA DESDE SEMPRE &nbsp;&nbsp;&nbsp; MELHOR VISUALIZADO EM 800x600 &nbsp;&nbsp;&nbsp;
+        </span>
+      </div>
+    </div>
+
+    <!-- nav -->
+    <div style="display:flex; flex-wrap:wrap; gap:4px; justify-content:center; background:#222; padding:8px; border-bottom:4px double #39FF14;">
+      <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="7">
+        <button onClick="{{ item.go }}" style="{{ item.style }}">{{ item.label }}</button>
+      </sc-for>
+    </div>
+
+    <!-- page content -->
+    <div style="background:#0d0d0d; padding:20px; min-height:420px; color:#eee; border-bottom:4px double #39FF14;">
+
+      <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+        <div style="text-align:center;">
+          <div style="background:#1a1a1a; border:3px dashed #ffe600; padding:16px; margin-bottom:16px;">
+            <div style="font-size:22px; color:#ffe600; font-weight:bold;">BEM VINDO(A), INVOCADOR(A)!</div>
+            <div style="margin-top:8px; font-size:15px; color:#ccc;">Você é o visitante de honra do lendário Nicolas, 21 anos, vendedor autônomo de Monjaro paraguaio e caçador incansável da loirinha misteriosa.</div>
+          </div>
+          <div style="display:flex; gap:6px; justify-content:center; align-items:center; background:#111; border:2px inset #444; padding:10px; font-family:'Courier New',monospace; width:fit-content; margin:0 auto 18px;">
+            <span style="color:#39FF14; font-size:13px;">VOCÊ É O VISITANTE Nº</span>
+            <span style="background:#000; color:#ff0000; font-size:22px; letter-spacing:3px; padding:2px 8px; border:1px solid #ff0000;">{{ hitCountStr }}</span>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:16px;">
+            <div style="width:100%; aspect-ratio:4/3; border:3px solid #ff00ff;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="home-1" shape="rect" placeholder="foto icônica do Nicolas" src="uploads/WhatsApp Image 2026-07-13 at 18.36.31/20210619_212057.jpg" hint-size="100%,100%"></x-import></div>
+            <div style="width:100%; aspect-ratio:4/3; border:3px solid #00eaff;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="home-2" shape="rect" placeholder="print de derrota no ranked" src="uploads/WhatsApp Image 2026-07-13 at 18.36.31/WhatsApp Image 2026-07-13 at 18.21.56.jpeg" hint-size="100%,100%"></x-import></div>
+            <div style="width:100%; aspect-ratio:4/3; border:3px solid #39FF14;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="home-3" shape="rect" placeholder="foto vendendo monjaro" src="uploads/WhatsApp Image 2026-07-13 at 18.36.31/WhatsApp Image 2026-07-13 at 18.36.29.jpeg" hint-size="100%,100%"></x-import></div>
+          </div>
+          <div style="font-size:13px; color:#888;">Assine o livro de visitas e conheça a loja oficial! Use o menu acima 👆</div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isSobre }}" hint-placeholder-val="{{ false }}">
+        <div>
+          <div style="font-family:Impact,sans-serif; font-size:26px; color:#39FF14; text-align:center; margin-bottom:14px;">📜 FICHA DO INVOCADOR 📜</div>
+          <table style="width:100%; border-collapse:collapse; background:#151515; border:2px solid #ffe600;">
+            <tr><td style="padding:8px; border:1px solid #444; color:#ffe600; width:35%;">Nome</td><td style="padding:8px; border:1px solid #444;">Nicolas "O Original"</td></tr>
+            <tr><td style="padding:8px; border:1px solid #444; color:#ffe600;">Idade</td><td style="padding:8px; border:1px solid #444;">21 anos (finalmente pode entrar em qualquer lugar, mas já entrava mesmo assim)</td></tr>
+            <tr><td style="padding:8px; border:1px solid #444; color:#ffe600;">Campeão principal</td><td style="padding:8px; border:1px solid #444;">Ele mesmo, versão OTP</td></tr>
+            <tr><td style="padding:8px; border:1px solid #444; color:#ffe600;">Elo</td><td style="padding:8px; border:1px solid #444;">Grão Mestre (por escolha própria, ele diz)</td></tr>
+            <tr><td style="padding:8px; border:1px solid #444; color:#ffe600;">Profissão</td><td style="padding:8px; border:1px solid #444;">Importador-exportador de Monjaro paraguaio</td></tr>
+            <tr><td style="padding:8px; border:1px solid #444; color:#ffe600;">Status amoroso</td><td style="padding:8px; border:1px solid #444;">Apaixonado pela loirinha (situação: "em análise" há anos)</td></tr>
+            <tr><td style="padding:8px; border:1px solid #444; color:#ffe600;">Frase de efeito</td><td style="padding:8px; border:1px solid #444;">"Não é remédio pirata, é fórmula importada"</td></tr>
+          </table>
+          <div style="margin-top:16px;">
+            <div style="color:#ffe600; margin-bottom:4px; font-size:13px;">WIN RATE</div>
+            <div style="background:#222; border:1px solid #666; height:22px;"><div style="background:#ff0000; height:100%; width:12%;"></div></div>
+            <div style="color:#ffe600; margin:10px 0 4px; font-size:13px;">CARISMA</div>
+            <div style="background:#222; border:1px solid #666; height:22px;"><div style="background:#39FF14; height:100%; width:97%;"></div></div>
+            <div style="color:#ffe600; margin:10px 0 4px; font-size:13px;">CONFIANÇA PRA FALAR COM A LOIRINHA</div>
+            <div style="background:#222; border:1px solid #666; height:22px;"><div style="background:#00eaff; height:100%; width:4%;"></div></div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isGaleria }}" hint-placeholder-val="{{ false }}">
+        <div>
+          <div style="font-family:Impact,sans-serif; font-size:26px; color:#ff00ff; text-align:center; margin-bottom:14px;">📸 GALERIA DA VERGONHA 📸</div>
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px;">
+            <sc-for list="{{ galeriaSlots }}" as="slot" hint-placeholder-count="15">
+              <div style="width:100%; aspect-ratio:1/1; border:3px solid #ffe600; position:relative;">
+                <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ slot.id }}" shape="rect" placeholder="{{ slot.label }}" src="{{ slot.src }}" hint-size="100%,100%"></x-import>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isVideos }}" hint-placeholder-val="{{ false }}">
+        <div>
+          <div style="font-family:Impact,sans-serif; font-size:26px; color:#00eaff; text-align:center; margin-bottom:14px;">🎬 VÍDEOS CONSTRANGEDORES 🎬</div>
+          <div style="margin-bottom:14px; border:3px solid #ff0000; background:#000;">
+            <video src="uploads/WhatsApp Image 2026-07-13 at 18.36.31/WhatsApp Video 2026-07-13 at 18.21.55.mp4" controls style="width:100%; display:block; aspect-ratio:16/9; background:#000;"></video>
+            <div style="text-align:center; color:#39FF14; font-size:12px; padding:4px; background:#111;">▶ VÍDEO OFICIAL: O Nicolas em ação</div>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:14px;">
+            <sc-for list="{{ videoSlots }}" as="v" hint-placeholder-count="2">
+              <div style="width:100%; aspect-ratio:16/9; border:3px solid #39FF14; position:relative;">
+                <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ v.id }}" shape="rect" placeholder="{{ v.label }}" src="{{ v.src }}" hint-size="100%,100%"></x-import>
+                <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                  <div style="width:0; height:0; border-top:16px solid transparent; border-bottom:16px solid transparent; border-left:26px solid rgba(255,0,0,0.85);"></div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="text-align:center; margin-top:10px; color:#888; font-size:12px;">* vídeos podem conter cenas de derrotas em ranked e negociações duvidosas de Monjaro</div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isLoja }}" hint-placeholder-val="{{ false }}">
+        <div>
+          <div style="font-family:Impact,sans-serif; font-size:26px; color:#ffe600; text-align:center; margin-bottom:6px;">💊 LOJA OFICIAL DO MONJARO PARAGUAIO 💊</div>
+          <div style="text-align:center; color:#ff0000; font-size:11px; margin-bottom:14px;">*não original. não é fórmula. não funciona. não compre.</div>
+          <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px;">
+            <div style="background:#151515; border:2px solid #39FF14; padding:12px;">
+              <div style="color:#39FF14; font-weight:bold;">Monjaro Turbo Paraguai™</div>
+              <div style="color:#888; text-decoration:line-through; font-size:12px;">R$ 1.200,00</div>
+              <div style="color:#ffe600; font-size:20px; font-weight:bold;">R$ 39,90 + frete de mula</div>
+              <div style="font-size:12px; color:#ccc; margin-top:6px;">Emagrece, engorda, ou não faz nada — a sorte decide.</div>
+            </div>
+            <div style="background:#151515; border:2px solid #ff00ff; padding:12px;">
+              <div style="color:#ff00ff; font-weight:bold;">Kit Nicolas Confiança</div>
+              <div style="color:#888; text-decoration:line-through; font-size:12px;">R$ 800,00</div>
+              <div style="color:#ffe600; font-size:20px; font-weight:bold;">R$ 25,00 (na promessa)</div>
+              <div style="font-size:12px; color:#ccc; margin-top:6px;">Vem com nota fiscal desenhada à mão.</div>
+            </div>
+          </div>
+          <div style="margin-top:16px; background:#111; border:1px dashed #666; padding:10px;">
+            <div style="color:#ffe600; font-size:13px; margin-bottom:6px;">⭐⭐⭐⭐⭐ Depoimentos reais (não verificados)</div>
+            <div style="font-size:12px; color:#ccc;">"Comprei um, virei o Nicolas." — cliente anônimo, sob efeito de algo</div>
+            <div style="font-size:12px; color:#ccc; margin-top:4px;">"Chegou em 6 meses, dentro de uma calcinha do fusca." — outro cliente</div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isCrush }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align:center;">
+          <div style="font-family:Impact,sans-serif; font-size:26px; color:#ff00ff; margin-bottom:10px;">💘 QUADRO DE CONQUISTAS 💘</div>
+          <div style="background:#151515; border:3px dashed #ff00ff; padding:16px; max-width:420px; margin:0 auto 16px;">
+            <div style="width:180px; height:180px; margin:0 auto 12px; border:3px solid #ff00ff; border-radius:50%; overflow:hidden;">
+              <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="crush-1" shape="circle" placeholder="foto da musa (opcional, com cuidado 👀)" src="uploads/WhatsApp Image 2026-07-13 at 18.36.31/WhatsApp Image 2026-07-13 at 18.14.36(2).jpeg" hint-size="180px,180px"></x-import>
+            </div>
+            <div style="color:#ccc; font-size:14px;">Conquistas confirmadas: <b style="color:#ff0000;">0</b></div>
+            <div style="color:#ccc; font-size:14px;">Tentativas de puxar assunto: <b style="color:#ffe600;">infinitas</b></div>
+            <div style="color:#ccc; font-size:14px;">Fé que ainda vai rolar: <b style="color:#39FF14;">100%</b></div>
+          </div>
+          <div style="font-size:12px; color:#888;">Capítulo secreto reservado apenas para verdadeiros fãs do Nicolas.</div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isFesta }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align:center;">
+          <div style="font-family:Impact,sans-serif; font-size:28px; color:#39FF14; animation:blinker 1.2s step-start infinite;">🎂 CONVITE OFICIAL 🎂</div>
+          <div style="background:#151515; border:3px double #ffe600; padding:20px; max-width:460px; margin:14px auto;">
+            <div style="font-size:18px; color:#ffe600; font-weight:bold;">Venham comemorar os 21 anos do Nicolas!</div>
+            <div style="color:#ccc; margin-top:10px; font-size:14px;">📅 [preencher: data]<br>📍 [preencher: local]<br>🕒 [preencher: horário]</div>
+            <div style="color:#888; margin-top:10px; font-size:12px;">Traga presente ou pelo menos finja que trouxe.</div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isGuestbook }}" hint-placeholder-val="{{ false }}">
+        <div>
+          <div style="font-family:Impact,sans-serif; font-size:26px; color:#00eaff; text-align:center; margin-bottom:14px;">📖 LIVRO DE VISITAS 📖</div>
+          <div style="background:#151515; border:2px solid #444; padding:12px; margin-bottom:14px; display:flex; gap:8px; flex-wrap:wrap;">
+            <input placeholder="seu nome" value="{{ newName }}" onChange="{{ onNameChange }}" style="flex:1; min-width:140px; padding:8px; background:#000; border:1px solid #39FF14; color:#39FF14; font-family:inherit;">
+            <input placeholder="deixe uma zoeira pro Nicolas" value="{{ newMsg }}" onChange="{{ onMsgChange }}" style="flex:2; min-width:200px; padding:8px; background:#000; border:1px solid #39FF14; color:#39FF14; font-family:inherit;">
+            <button onClick="{{ addEntry }}" style="padding:8px 16px; background:#ff00ff; border:none; color:#000; font-weight:bold; cursor:pointer;">ASSINAR</button>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <sc-for list="{{ guestEntries }}" as="g" hint-placeholder-count="4">
+              <div style="background:#111; border-left:4px solid #ffe600; padding:8px 12px;">
+                <div style="color:#ffe600; font-weight:bold; font-size:13px;">{{ g.name }} <span style="color:#666; font-weight:normal;">disse:</span></div>
+                <div style="color:#ccc; font-size:13px;">{{ g.msg }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+    </div>
+
+    <!-- footer badges -->
+    <div style="background:#000; padding:12px; display:flex; flex-wrap:wrap; gap:8px; justify-content:center; align-items:center;">
+      <div style="border:1px solid #39FF14; color:#39FF14; font-size:10px; padding:4px 8px;">MELHOR EM IE 800x600</div>
+      <div style="border:1px solid #ff00ff; color:#ff00ff; font-size:10px; padding:4px 8px;">100% HTML PURO</div>
+      <div style="border:1px solid #ffe600; color:#ffe600; font-size:10px; padding:4px 8px;">SEM COOKIES, SÓ TRAUMA</div>
+      <div style="border:1px solid #00eaff; color:#00eaff; font-size:10px; padding:4px 8px;">POWERED BY CAFÉ E MONJARO</div>
+    </div>
+  </div>
+
+  <!-- fake midi player -->
+  <div style="position:fixed; bottom:14px; left:14px; background:#111; border:2px outset #666; padding:8px 12px; display:flex; align-items:center; gap:8px; font-family:'Courier New',monospace; z-index:50;">
+    <div style="font-size:18px; animation:spin360 3s linear infinite;">💿</div>
+    <div>
+      <div style="color:#39FF14; font-size:11px;">Tocando agora:</div>
+      <div style="color:#ffe600; font-size:11px; max-width:180px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">legends_never_die_karaoke_v2_FINAL.mid</div>
+    </div>
+    <div style="display:flex; gap:2px; align-items:flex-end; height:20px;">
+      <div style="width:3px; background:#00eaff; animation:eq 0.6s ease-in-out infinite;"></div>
+      <div style="width:3px; background:#00eaff; animation:eq 0.5s ease-in-out infinite 0.2s;"></div>
+      <div style="width:3px; background:#00eaff; animation:eq 0.7s ease-in-out infinite 0.1s;"></div>
+      <div style="width:3px; background:#00eaff; animation:eq 0.4s ease-in-out infinite 0.3s;"></div>
+    </div>
+  </div>
+
+  <!-- runaway button -->
+  <button onMouseEnter="{{ onRunawayHover }}" style="position:fixed; top:{{ runawayTop }}px; left:{{ runawayLeft }}px; background:#ff0000; color:#fff; font-weight:bold; border:3px outset #900; padding:10px 16px; font-family:'Comic Sans MS',cursive; z-index:60; animation:bounce 0.8s ease-in-out infinite;">
+    ⚠️ NÃO CLIQUE AQUI ⚠️
+  </button>
+
+  <!-- fake virus / prize popup -->
+  <sc-if value="{{ showPopup }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed; inset:0; background:rgba(0,0,0,0.7); display:flex; align-items:center; justify-content:center; z-index:100;">
+      <div style="background:#c0c0c0; border:4px outset #fff; width:340px; font-family:'Courier New',monospace;">
+        <div style="background:linear-gradient(90deg,#000080,#1084d0); color:#fff; padding:4px 8px; display:flex; justify-content:space-between; font-size:13px; font-weight:bold;">
+          <span>⚠ ALERTA_DO_SISTEMA.exe</span>
+          <span onClick="{{ closePopup }}" style="cursor:pointer; background:#c0c0c0; color:#000; padding:0 6px;">X</span>
+        </div>
+        <div style="padding:16px; text-align:center;">
+          <div style="font-size:40px;">🦠🎉</div>
+          <div style="color:#000; font-weight:bold; margin:8px 0;">PARABÉNS!! Seu PC foi selecionado!</div>
+          <div style="color:#000; font-size:13px;">Você tem 3 (três) vírus E ganhou um brinde: assistir o Nicolas jogar ranked por 1 hora.</div>
+          <button onClick="{{ closePopup }}" style="margin-top:14px; padding:8px 20px; background:#008000; color:#fff; border:2px outset #0a0; font-weight:bold; cursor:pointer;">CLIQUE PARA "LIMPAR" (na verdade não faz nada)</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    page: 'home',
+    hitCount: 0,
+    runawayTop: 120,
+    runawayLeft: 40,
+    showPopup: false,
+    newName: '',
+    newMsg: '',
+    guestEntries: [
+      { name: 'Anônimo Ferro IV', msg: 'Nicolas, seu Monjaro não fez efeito nenhum kkkk' },
+      { name: 'A Loirinha (bloqueou o número dele)', msg: 'para de mandar bom dia' },
+      { name: 'Time Inimigo', msg: 'obrigado pelo free win, volte sempre' },
+      { name: 'Fiscal do Paraguai', msg: 'já estamos te procurando' }
+    ]
+  };
+
+  componentDidMount() {
+    this._hitInterval = setInterval(() => {
+      this.setState(s => {
+        const next = s.hitCount + Math.floor(Math.random() * 37) + 1;
+        if (next >= 999999) { clearInterval(this._hitInterval); return { hitCount: 999999 }; }
+        return { hitCount: next };
+      });
+    }, 40);
+    this._popupTimer = setTimeout(() => this.setState({ showPopup: true }), 4500);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._hitInterval);
+    clearTimeout(this._popupTimer);
+  }
+
+  goTo(page) {
+    this.setState({ page });
+  }
+
+  renderVals() {
+    const pages = [
+      { id: 'home', label: '🏠 HOME' },
+      { id: 'sobre', label: '📜 SOBRE' },
+      { id: 'galeria', label: '📸 GALERIA' },
+      { id: 'videos', label: '🎬 VÍDEOS' },
+      { id: 'loja', label: '💊 LOJA' },
+      { id: 'crush', label: '💘 CRUSH' },
+      { id: 'festa', label: '🎂 FESTA' },
+      { id: 'guestbook', label: '📖 VISITAS' },
+    ];
+
+    const navItems = pages.map(p => ({
+      label: p.label,
+      go: () => this.goTo(p.id),
+      style: `padding:8px 12px; font-family:'Comic Sans MS',cursive; font-weight:bold; font-size:12px; cursor:pointer; border:2px outset #666; background:${this.state.page === p.id ? '#39FF14' : '#333'}; color:${this.state.page === p.id ? '#000' : '#ffe600'};`
+    }));
+
+    const hitCountStr = String(this.state.hitCount).padStart(6, '0');
+
+    const UP = 'uploads/WhatsApp Image 2026-07-13 at 18.36.31/';
+    const galeriaSlots = [
+      { id: 'gal-1', label: 'no evento de e-sports fingindo que entende de LoL', src: UP + 'IMG_8473.JPG' },
+      { id: 'gal-2', label: 'aprontando bomba (de mentira, calma)', src: UP + 'WhatsApp Image 2026-07-13 at 11.09.06.jpeg' },
+      { id: 'gal-3', label: 'com a camisa dedicada à loirinha', src: UP + 'WhatsApp Image 2026-07-13 at 18.14.35.jpeg' },
+      { id: 'gal-4', label: 'embarcando pro Paraguai buscar mais Monjaro', src: UP + 'WhatsApp Image 2026-07-13 at 18.14.36(1).jpeg' },
+      { id: 'gal-5', label: "sendo 'examinado' pelos amigos depois de dormir", src: UP + 'WhatsApp Image 2026-07-13 at 18.14.36.jpeg' },
+      { id: 'gal-6', label: 'mais uma negociação suspeita', src: UP + 'WhatsApp Image 2026-07-13 at 18.36.25.jpeg' },
+      { id: 'gal-7', label: 'flagra da van do contrabando', src: UP + 'WhatsApp Image 2026-07-13 at 18.36.26(1).jpeg' },
+      { id: 'gal-8', label: 'clima de máfia paraguaia', src: UP + 'WhatsApp Image 2026-07-13 at 18.36.26.jpeg' },
+      { id: 'gal-9', label: 'happy hour com a firma', src: UP + 'WhatsApp Image 2026-07-13 at 18.36.30.jpeg' },
+      { id: 'gal-10', label: 'na formatura, chovendo por dentro', src: UP + 'WhatsApp Image 2026-07-13 at 18.36.31.jpeg' },
+      { id: 'gal-11', label: 'acha que é nadador olímpico', src: UP + 'WhatsApp Image 2026-07-13 at 18.36.34(1).jpeg' },
+      { id: 'gal-12', label: 'torcida oficial em casa', src: UP + 'WhatsApp Image 2026-07-13 at 18.36.34.jpeg' },
+      { id: 'gal-13', label: 'viagem editada no Minecraft (não foi no Rio de verdade)', src: UP + 'WhatsApp Image 2026-07-13 at 18.36.35.jpeg' },
+      { id: 'gal-14', label: 'surtando na balada', src: UP + 'WhatsApp Image 2026-07-13 at 18.36.36.jpeg' },
+      { id: 'gal-15', label: 'perdendo no pôquer igual perde no ranked', src: UP + 'WhatsApp Image 2026-07-13 at 18.59.06.jpeg' },
+    ];
+
+    const videoSlots = [
+      { id: 'vid-2', label: "vídeo (foto): ele 'dançando' na balada", src: UP + 'WhatsApp Image 2026-07-13 at 18.36.36.jpeg' },
+      { id: 'vid-3', label: 'vídeo (foto): all-in que não deu certo', src: UP + 'WhatsApp Image 2026-07-13 at 18.59.06.jpeg' },
+    ];
+
+    return {
+      navItems,
+      isHome: this.state.page === 'home',
+      isSobre: this.state.page === 'sobre',
+      isGaleria: this.state.page === 'galeria',
+      isVideos: this.state.page === 'videos',
+      isLoja: this.state.page === 'loja',
+      isCrush: this.state.page === 'crush',
+      isFesta: this.state.page === 'festa',
+      isGuestbook: this.state.page === 'guestbook',
+      hitCountStr,
+      galeriaSlots,
+      videoSlots,
+      runawayTop: this.state.runawayTop,
+      runawayLeft: this.state.runawayLeft,
+      onRunawayHover: () => {
+        const top = Math.floor(Math.random() * (window.innerHeight - 100)) + 20;
+        const left = Math.floor(Math.random() * (window.innerWidth - 200)) + 20;
+        this.setState({ runawayTop: top, runawayLeft: left });
+      },
+      showPopup: this.state.showPopup,
+      closePopup: () => this.setState({ showPopup: false }),
+      newName: this.state.newName,
+      newMsg: this.state.newMsg,
+      onNameChange: (e) => this.setState({ newName: e.target.value }),
+      onMsgChange: (e) => this.setState({ newMsg: e.target.value }),
+      guestEntries: this.state.guestEntries,
+      addEntry: () => {
+        if (!this.state.newName.trim() && !this.state.newMsg.trim()) return;
+        this.setState(s => ({
+          guestEntries: [{ name: s.newName.trim() || 'Anônimo', msg: s.newMsg.trim() || '...' }, ...s.guestEntries],
+          newName: '',
+          newMsg: ''
+        }));
+      },
+    };
+  }
+}
+
+</script>
+</body>
+</html>
